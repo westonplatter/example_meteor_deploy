@@ -1,8 +1,11 @@
 ---
+  - name: install meteor
+    sudo: yes
+    shell: curl https://install.meteor.com | /bin/sh
+
   - name: install meteor npm modules
     sudo: yes
-    npm: name={{ item }} global=yes
+    npm: name={{ item }} global=yes state=present
     with_items:
-      - meteor
       - meteorite
       - forever
