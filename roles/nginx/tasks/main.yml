@@ -20,6 +20,10 @@
       - sites-available
       - sites-enabled
 
+  - name: ensure default nginx has been deleted
+    sudo: yes
+    file: dest=/etc/nginx/sites-enabled/default state=absent
+
   - name: restart nginx
     sudo: yes
     service: name=nginx state=restarted enabled=yes
