@@ -9,7 +9,7 @@
 
   - name: install MongoDB
     sudo: yes
-    apt: pkg=mongodb-10gen=$mongo_version update_cache=yes
+    apt: pkg=mongodb-10gen={{ mongo_version }} update_cache=yes
 
   - name: update the MongoDB conf file
     sudo: yes 
