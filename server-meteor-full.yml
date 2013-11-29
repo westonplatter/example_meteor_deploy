@@ -3,6 +3,7 @@
   hosts: all
   roles: 
     - common
+    - nginx
     - mongo
     - nodejs
     - meteor
