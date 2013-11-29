@@ -1,0 +1,8 @@
+---
+  - name: install meteor npm modules
+    sudo: yes
+    npm: name={{ item }} global=yes
+    with_items:
+      - meteor
+      - meteorite
+      - forever

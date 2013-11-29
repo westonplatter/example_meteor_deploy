@@ -3,5 +3,7 @@
   hosts: all
   roles: 
     - common
-    - nodejs
     - mongo
+    - nodejs
+    - meteor
+    - deploy_quick_task
