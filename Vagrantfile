@@ -90,8 +90,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     
     # Inventory file
     # ansible.inventory_path = "provision/ansible_hosts"
-
-    # If something goes wrong, you'll want Ansible to be more verbose.
-    ansible.verbose = "vvvv"
   end
 end
