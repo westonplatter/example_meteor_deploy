@@ -29,7 +29,7 @@
   - name: start app with forever
     sudo: yes
     shell:  > 
-      PORT={{ port_number }}
+      PORT={{ port }}
       MONGO_URL={{ mongo_url }}
       forever start
       {{ deploy_app_dir }}/bundle/main.js
