@@ -1,36 +1,37 @@
 ---
-  - name: ensure $deploy_dir exists
+  - name: ensure {{ deploy_dir }} exists
     sudo: yes
-    file: name={{ item }}
-          state=directory
-          owner=root
-          group=root
+    file: name={{ item }} state=directory owner=root group=root
     with_items: 
       - $deploy_dir
       - $deploy_app_dir
 
   - name: clone
     sudo: yes
-    git: repo=$repo_url dest=$deploy_app_dir
+    git: repo={{ repo_url }} dest={{ deploy_app_dir }}
 
   - name: install meteor dependencies
     sudo: yes
-    shell: chdir=$deploy_app_dir mrt install
+    shell: chdir={{ deploy_app_dir }} mrt install
 
   - name: remove current running app
     sudo: yes
-    shell: chdir=$deploy_app_dir rm -rf bundle
+    shell: chdir={{ deploy_app_dir }} rm -rf bundle
 
   - name: bundle app
     sudo: yes
-    shell: chdir=$deploy_app_dir meteor bundle bundle.tgz 
+    shell: chdir={{ deploy_app_dir }} meteor bundle bundle.tgz
 
   - name: unbundle app
     sudo: yes
-    shell: chdir=$deploy_app_dir tar -xzvf bundle.tgz
+    shell: chdir={{ deploy_app_dir }} tar -xzvf bundle.tgz
 
   - name: start app with forever
     sudo: yes
-    shell: chdir=$deploy_app_dir MONGO_URL=$mongo_url nohup node bundle/main.js > logfile.log
+    shell:  > 
+      PORT={{ port_number }}
+      MONGO_URL={{ mongo_url }}
+      forever start
+      {{ deploy_app_dir }}/bundle/main.js
     async: 10
     poll: 1

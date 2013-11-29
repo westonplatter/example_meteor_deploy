@@ -6,3 +6,4 @@ repo_version: master
 deploy_dir: /var/www
 deploy_app_dir: /var/www/$app_name
 mongo_url: mongodb://localhost:27017/$app_name
+port: 8003
