@@ -17,3 +17,5 @@ nginx_server_log: /var/log/nginx/meteor.log
 nginx_server_root: "{{ deploy_app_dir}}"
 nginx_server_index: index.html index.htm
 nginx_server_proxy_pass: "http://{{ app_name }}/"
+
+pid_expression: "/usr/bin/nodejs /usr/lib/node_modules/forever/bin/monitor /var/www/{{ app_name }}/bundle/main.js"
